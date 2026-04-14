@@ -1,0 +1,14 @@
+/* Main App Styles */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Custom utility classes */
+.gradient-text {
+  background: linear-gradient(to right, #2563eb, #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

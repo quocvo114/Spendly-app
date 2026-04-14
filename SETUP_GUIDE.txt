@@ -1,0 +1,120 @@
+========================================
+  HƯỚNG DẪN CÀI ĐẶT NHANH
+  Personal Finance App
+========================================
+
+BƯỚC 1: Cài đặt Backend
+------------------------
+1. Mở Command Prompt/Terminal/PowerShell
+2. Di chuyển vào thư mục server:
+   cd server
+
+3. Cài đặt các package cần thiết:
+   npm install
+
+4. Đợi cài đặt xong (có thể mất vài phút)
+   ✅ Thấy dòng "added xxx packages" là thành công
+
+BƯỚC 2: Cài đặt Frontend
+-------------------------
+1. Mở Command Prompt/Terminal/PowerShell MỚI (terminal riêng)
+2. Di chuyển vào thư mục client:
+   cd client
+
+3. Cài đặt các package cần thiết:
+   npm install
+
+4. Đợi cài đặt xong
+
+BƯỚC 3: Chạy Backend
+---------------------
+1. Trong terminal tại thư mục server, gõ lệnh:
+   npm start
+
+2. Kết quả mong đợi:
+   Attempting to connect to MongoDB...
+   >>> MongoDB connected successfully
+   >>> Server running on port 5000
+
+✅ Thấy dòng "MongoDB connected successfully" là Backend đã chạy OK!
+⚠️ KHÔNG TẮT terminal này!
+
+BƯỚC 4: Chạy Frontend
+----------------------
+1. Trong terminal tại thư mục client, gõ lệnh:
+   npm run dev
+
+2. Kết quả mong đợi:
+   VITE ready in xxx ms
+   ➜  Local:   http://localhost:5173/
+
+✅ Thấy địa chỉ http://localhost:5173/ là Frontend đã chạy OK!
+⚠️ KHÔNG TẮT terminal này!
+
+BƯỚC 5: Mở trình duyệt
+-----------------------
+1. Mở trình duyệt (Chrome, Edge, Firefox...)
+2. Truy cập: http://localhost:5173
+3. Bắt đầu sử dụng ứng dụng!
+
+========================================
+  LƯU Ý QUAN TRỌNG
+========================================
+
+✅ PHẢI LÀM:
+- Chạy npm install ở CẢ 2 thư mục: server VÀ client
+- Mở 2 terminal riêng biệt để chạy backend và frontend
+- Không tắt cả 2 terminal khi đang sử dụng app
+- Đảm bảo có kết nối Internet
+
+❌ KHÔNG ĐƯỢC:
+- Bỏ qua bước npm install
+- Tắt terminal khi app đang chạy
+- Chỉ chạy npm install ở 1 trong 2 thư mục
+
+========================================
+  XỬ LÝ LỖI
+========================================
+
+LỖI: "Cannot find module 'express'" 
+     (hoặc bất kỳ module nào)
+➜ GIẢI PHÁP: Chạy lại lệnh npm install trong thư mục server
+
+LỖI: "MongoDB connection error"
+➜ GIẢI PHÁP: 
+  - Kiểm tra kết nối Internet
+  - Đảm bảo file server/.env tồn tại
+
+LỖI: "Port 5000 already in use"
+➜ GIẢI PHÁP: 
+  - Đóng các ứng dụng đang dùng port 5000
+  - Hoặc thay đổi PORT trong file .env
+
+LỖI: Sau khi chạy mọi thứ OK nhưng không vào được web
+➜ GIẢI PHÁP:
+  - Kiểm tra CÃ 2 terminal đều đang chạy
+  - Thử truy cập lại: http://localhost:5173
+  - Xóa cache trình duyệt và thử lại
+
+========================================
+  KIỂM TRA HỆ THỐNG
+========================================
+
+Để kiểm tra Node.js đã cài đặt chưa:
+  node -v
+  (Kết quả mong đợi: v16.x.x hoặc cao hơn)
+
+Để kiểm tra npm đã có chưa:
+  npm -v
+  (Kết quả mong đợi: 8.x.x hoặc cao hơn)
+
+========================================
+  HỖ TRỢ
+========================================
+
+Nếu vẫn gặp vấn đề:
+1. Đọc kỹ thông báo lỗi trong terminal
+2. Xem file README.md để biết thêm chi tiết
+3. Đảm bảo làm đúng từng bước theo thứ tự
+
+Chúc bạn cài đặt thành công! 🎉
