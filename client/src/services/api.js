@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+// Lấy URL từ environment variable
+const API_URL = import.meta.env.VITE_API_URL + "/api";
 
 //create an axios instance
 const api = axios.create({
@@ -21,7 +22,7 @@ api.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 // Auth API calls
