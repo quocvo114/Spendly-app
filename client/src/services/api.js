@@ -1,7 +1,22 @@
 import axios from "axios";
 
 // Lấy URL từ environment variable
-const API_URL = import.meta.env.VITE_API_URL + "/api";
+const rawApiUrl = import.meta.env.VITE_API_URL?.trim();
+const API_URL = rawApiUrl ? `${rawApiUrl.replace(/\/+$/, "")}/api` : "/api";
+
+const toDateOnly = (value) => {
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
 
 //create an axios instance
 const api = axios.create({
@@ -48,6 +63,22 @@ export const expenseAPI = {
   getAllExpenses: async () => {
     const response = await api.get("/expenses");
     return response.data;
+  },
+
+  getExpensesByDate: async (date) => {
+    try {
+      const response = await api.get(`/expenses/day?date=${date}`);
+      return response.data;
+    } catch (error) {
+      // Backward-compatible fallback if deployed backend does not have /expenses/day yet.
+      if (error.response?.status === 404) {
+        const response = await api.get("/expenses");
+        const expenses = Array.isArray(response.data) ? response.data : [];
+        return expenses.filter((expense) => toDateOnly(expense.date) === date);
+      }
+
+      throw error;
+    }
   },
 
   createExpense: async (expenseData) => {

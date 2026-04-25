@@ -1,0 +1,130 @@
+.spendly-calendar {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  font-family: inherit;
+}
+
+.spendly-calendar .react-calendar__month-view__weekdays {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-bottom: 0;
+  border-radius: 14px 14px 0 0;
+}
+
+.spendly-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 10px 6px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.spendly-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.spendly-calendar .react-calendar__month-view__days {
+  border-left: 1px solid #e2e8f0;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+}
+
+.spendly-calendar .react-calendar__tile {
+  position: relative;
+  height: 110px;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  border-top: 1px solid #e2e8f0;
+  padding: 8px 6px 4px;
+  text-align: left;
+  vertical-align: top;
+  transition: background-color 0.2s ease;
+}
+
+.spendly-calendar .react-calendar__month-view__days__day:nth-child(7n) {
+  border-right: 0;
+}
+
+.spendly-calendar .react-calendar__tile:hover {
+  background: #f8fafc;
+}
+
+.spendly-calendar .react-calendar__tile:disabled {
+  background: #f8fafc;
+  color: #cbd5e1;
+}
+
+.spendly-calendar .react-calendar__month-view__days__day--weekend {
+  color: #334155;
+}
+
+.spendly-calendar .react-calendar__tile--now {
+  background: #eff6ff;
+}
+
+.spendly-calendar .react-calendar__tile--active {
+  background: #dbeafe;
+}
+
+.spendly-calendar .react-calendar__tile > abbr {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.spendly-tile-events {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spendly-chip {
+  display: inline-block;
+  width: 100%;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spendly-chip-income {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.spendly-chip-expense {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.spendly-chip-muted {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+@media (max-width: 1280px) {
+  .spendly-calendar .react-calendar__tile {
+    height: 95px;
+  }
+}
+
+@media (max-width: 768px) {
+  .spendly-calendar .react-calendar__tile {
+    height: 88px;
+    padding: 6px 4px 3px;
+  }
+
+  .spendly-chip {
+    font-size: 10px;
+    padding: 1px 6px;
+  }
+}

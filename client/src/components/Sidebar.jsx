@@ -1,4 +1,4 @@
-import { LayoutDashboard, PlusCircle, FileText, Wallet, LogOut } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, FileText, Wallet, LogOut, CalendarDays } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authAPI } from '../services/api';
 import { useState, useEffect } from 'react';
@@ -29,6 +29,7 @@ export default function Sidebar() {
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
     { icon: PlusCircle, label: 'Add Expense', path: '/add-expense' },
     { icon: FileText, label: 'Reports', path: '/reports' },
+    { icon: CalendarDays, label: 'Calendar', path: '/calendar' },
   ];
 
   const getInitials = (name) => {
@@ -43,7 +44,7 @@ export default function Sidebar() {
   return (
     <div className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col fixed left-0 top-0">
       {/* Logo */}
-      <div className="p-6 border-b border-gray-200">
+      <div className="p-6 border-gray-200">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
             <Wallet className="w-6 h-6 text-white" />
@@ -82,7 +83,7 @@ export default function Sidebar() {
 
       {/* User Profile */}
       {user && (
-        <div className="p-4 border-t border-gray-200">
+        <div className="p-4 border-gray-200">
           <div className="flex items-center gap-3 mb-3">
             <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
               <span className="text-white font-semibold text-sm">

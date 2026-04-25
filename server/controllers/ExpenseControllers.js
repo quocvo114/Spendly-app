@@ -34,6 +34,33 @@ export const getExpenses = async (req, res) => {
   }
 };
 
+// GET expenses by date (YYYY-MM-DD)
+export const getExpensesByDate = async (req, res) => {
+  try {
+    const { date } = req.query;
+
+    if (!date) {
+      return res.status(400).json({ message: 'Date query is required (YYYY-MM-DD)' });
+    }
+
+    const startOfDay = new Date(`${date}T00:00:00.000Z`);
+    const endOfDay = new Date(`${date}T23:59:59.999Z`);
+
+    const expenses = await Expense.find({
+      user: req.user,
+      date: {
+        $gte: startOfDay,
+        $lte: endOfDay,
+      },
+    }).sort({ date: -1 });
+
+    res.json(expenses);
+  } catch (error) {
+    console.error('Get expenses by date error:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // DELETE expense
 export const deleteExpense = async (req, res) => {
   try {

@@ -7,6 +7,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 import AddExpense from './pages/AddExpense'
 import Reports from './pages/Reports'
+import CalendarPage from './pages/CalendarPage'
 
 function App() {
   return (
@@ -53,6 +54,11 @@ function App() {
         <Route path="/reports" element={
           <ProtectedRoute>
             <Reports />
+          </ProtectedRoute>
+        } />
+        <Route path="/calendar" element={
+          <ProtectedRoute>
+            <CalendarPage />
           </ProtectedRoute>
         } />
         <Route path="/" element={<Navigate to="/login" replace />} />

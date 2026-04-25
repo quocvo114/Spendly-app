@@ -92,22 +92,27 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex h-screen bg-slate-100 overflow-hidden">
       <Sidebar />
       
       {/* Main Content */}
-      <div className="flex-1 ml-64">
+      <div className="flex-1 ml-64 h-screen flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-3.5">
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-          <p className="text-gray-500 mt-1">Welcome back! Here's your financial overview</p>
+        <div className="bg-white/95 backdrop-blur border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-slate-900">Dashboard</h1>
+            <p className="text-slate-500 mt-1">Welcome back! Here's your financial overview</p>
+          </div>
+          <span className="hidden md:inline-flex px-3 py-1.5 rounded-full text-sm font-semibold bg-blue-50 text-blue-600 border border-blue-100">
+            {expenses.length} transactions
+          </span>
         </div>
 
         {/* Dashboard Content */}
-        <div className="p-8">
+        <div className="flex-1 p-6 lg:p-8 overflow-hidden">
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3">
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 flex-none">
               <AlertCircle className="w-5 h-5 text-red-500" />
               <span className="text-red-700 text-sm">{error}</span>
             </div>
@@ -115,13 +120,13 @@ export default function Dashboard() {
 
           {/* Loading State */}
           {loading ? (
-            <div className="flex items-center justify-center h-64">
+            <div className="flex items-center justify-center h-full">
               <Loader2 className="w-8 h-8 text-blue-500 animate-spin" />
             </div>
           ) : (
-            <>
+            <div className="h-full flex flex-col">
               {/* Stats Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 flex-none">
                 <StatCard
                   icon={DollarSign}
                   title="Total Balance"
@@ -143,30 +148,33 @@ export default function Dashboard() {
               </div>
 
               {/* Recent Transactions */}
-              <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div className="px-6 py-5 border-b border-gray-100">
-                  <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
+              <div className="bg-white rounded-2xl shadow-sm border border-slate-200 flex-1 min-h-0 flex flex-col">
+                <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-slate-900">Recent Transactions</h2>
+                  <span className="inline-flex px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">
+                    Scrollable list
+                  </span>
                 </div>
-                <div className="p-2">
-                  {expenses.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-12">
-                      <TrendingUp className="w-12 h-12 text-gray-300 mb-3" />
-                      <p className="text-gray-500 text-center">No transactions yet</p>
-                      <p className="text-gray-400 text-sm mt-1">Start by adding your first expense or income</p>
-                    </div>
-                  ) : (
-                    expenses.map((expense) => (
+                {expenses.length === 0 ? (
+                  <div className="flex-1 flex flex-col items-center justify-center py-12 px-6">
+                    <TrendingUp className="w-12 h-12 text-gray-300 mb-3" />
+                    <p className="text-gray-500 text-center">No transactions yet</p>
+                    <p className="text-gray-400 text-sm mt-1">Start by adding your first expense or income</p>
+                  </div>
+                ) : (
+                  <div className="p-2 pr-3 flex-1 min-h-0 overflow-y-auto">
+                    {expenses.map((expense) => (
                       <TransactionItem 
                         key={expense._id} 
                         transaction={formatTransactionForDisplay(expense)}
                         onDelete={handleDeleteExpense}
                         onUpdate={handleUpdateExpense}
                       />
-                    ))
-                  )}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
-            </>
+            </div>
           )}
         </div>
       </div>
